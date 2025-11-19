@@ -1,0 +1,24 @@
+config:
+  aws:region: us-east-1
+  pulumi-ts-demo:network:
+    - name: platform-main
+      cidrBlock: 10.0.0.0/16
+      subnets:
+        - name: platform-k8s
+          cidrBlocks:
+            - 10.0.4.0/24
+            - 10.0.5.0/24
+            - 10.0.6.0/24
+            - 10.0.192.0/18
+          natSubnet: 10.0.0.0/22
+          tags:
+            env: "platform"
+        - name: platform-k8s-public
+          cidrBlocks:
+            - 10.0.11.0/24
+            - 10.0.12.0/24
+            - 10.0.13.0/24
+          tags:
+            env: "platform"
+          public: true
+  pulumi-ts-demo:bastionKeyName: bastion
